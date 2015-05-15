@@ -2,7 +2,7 @@
 # config the new system
 
 - name: disable the selinux
-  selinux: state=disable
+  selinux: state=disabled
 - name: stop no need service
   service: name={{ item }} enabled=no
   with_items:
