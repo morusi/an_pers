@@ -4,7 +4,7 @@
 - name: disable the selinux
   selinux: state=disable
 - name: stop no need service
-  service: name={{ items }} enabled=no
+  service: name={{ item }} enabled=no
   with_items:
     - ip6tables
     - iptables
@@ -12,7 +12,7 @@
     - iscsid
     - postfix
 - name: install need applications
-  yum: name={{ items }} state=present
+  yum: name={{ item }} state=present
   with_items:
     - vim
 - name: config the dns
