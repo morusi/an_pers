@@ -1,0 +1,23 @@
+---
+# config the new system
+
+- name: disable the selinux
+  selinux: state=disable
+- name: stop no need service
+  service: name={{ items }} enabled=no
+  with_items:
+    - ip6tables
+    - iptables
+    - iscsi
+    - iscsid
+    - postfix
+- name: install need applications
+  yum: name={{ items }} state=present
+  with_items:
+    - vim
+- name: config the dns
+  lineinfile: dest=/etc/resolv.conf
+              regexp=nameserver
+              line=nameserver {{ dns_ip }} \nnameserver {{ dns_ip2 }}
+              state=present
+
