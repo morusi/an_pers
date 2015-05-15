@@ -1,3 +1,4 @@
 ---
 - hosts: new
-  - base
+  roles:
+    - base
