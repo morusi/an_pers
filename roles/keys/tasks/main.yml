@@ -1,4 +1,8 @@
 ---
+- name: yum install python selinux
+  yum: name={{ items }} state=present
+  with_items:
+    - libselinux-python
 - name: check ssh dir
   file: path=/root/.ssh owner=root group=root mode=0700 state=directory
 - name: copy authorized_keys
